@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+    --color-app-bg: #EDEFF2;
+}
+
+:root {
+
+}
