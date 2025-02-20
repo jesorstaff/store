@@ -1,7 +1,7 @@
-import MainLayout from '@/layouts/mainLayout'
+import SidebarLayout from '@/layouts/sidebarLayout'
 
 const CatalogPage = () => {
-    return <MainLayout>Catalog Page</MainLayout>
+    return <SidebarLayout>Catalog Page</SidebarLayout>
 }
 
 export default CatalogPage

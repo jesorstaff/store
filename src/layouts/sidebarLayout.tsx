@@ -12,7 +12,7 @@ const SidebarLayout: FC<LayoutProps> = ({ children }) => {
             <Header />
             <div className="flex">
                 <Sidebar />
-                <div className="w-full p-5">{children}</div>
+                <div className="w-full p-10">{children}</div>
             </div>
         </>
     )

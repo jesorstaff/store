@@ -30,7 +30,7 @@ interface IProducts {
     }
 }
 
-interface ISubcategories {
+export interface ISubcategories {
     categoryId: number
     categoryName: string
     products?: IProducts[]

@@ -1,9 +1,7 @@
 import { ICatalog } from '@/interfaces'
 
-type TypeCatalog = Record<number, ICatalog>
-
-const catalog: TypeCatalog = {
-    0: {
+const catalog: ICatalog[] = [
+    {
         categoryId: 1,
         categoryName: 'Women',
         subcategories: [
@@ -33,7 +31,7 @@ const catalog: TypeCatalog = {
             },
         ],
     },
-    1: {
+    {
         categoryId: 2,
         categoryName: 'Men',
         subcategories: [
@@ -49,7 +47,7 @@ const catalog: TypeCatalog = {
             },
         ],
     },
-    2: {
+    {
         categoryId: 3,
         categoryName: 'Accessories',
         subcategories: [
@@ -65,7 +63,7 @@ const catalog: TypeCatalog = {
             },
         ],
     },
-    3: {
+    {
         categoryId: 4,
         categoryName: 'Sports',
         subcategories: [
@@ -81,9 +79,9 @@ const catalog: TypeCatalog = {
             },
         ],
     },
-}
+]
 
-export const fetchCatalog = (): Promise<TypeCatalog> => {
+export const fetchCatalog = (): Promise<ICatalog[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(catalog)

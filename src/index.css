@@ -1,9 +1,28 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-    --color-app-bg: #EDEFF2;
+    --color-app-bg: #edeff2;
+    --color-font-bold: #4d5e80;
+    --color-font-light: #6b7a99;
 }
 
 :root {
+    --bg-color-main: #edeff2;
+    --color: #4d5e80;
+    --color-light: #6b7a99;
+}
 
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background-color: var(--bg-color-main);
+    color: var(--color-light);
+    font-size: 16px;
 }

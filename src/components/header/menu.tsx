@@ -8,9 +8,7 @@ const Menu = () => {
                     to={item.link}
                     key={id}
                     className={({ isActive }) =>
-                        isActive
-                            ? 'border-b-1'
-                            : 'border-b-transparent border-b-1'
+                        `${isActive ? 'border-b-1' : 'border-b-transparent border-b-1'}`
                     }
                 >
                     {item.name}
