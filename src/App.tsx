@@ -1,4 +1,3 @@
-import MainLayout from '@/layouts/mainLayout'
 import SidebarLayout from '@/layouts/sidebarLayout'
 
 const App = () => {

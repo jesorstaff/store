@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
 import SidebarLayout from '@/layouts/sidebarLayout'
-import { Outlet } from 'react-router'
 import useStore from '@/store/store'
 import { useEffect } from 'react'
-import { NavLink } from 'react-router'
+import { NavLink, Outlet } from 'react-router'
 import { useParams } from 'react-router'
-import { ICatalog, ISubcategories } from '@/interfaces'
+import { ICatalog, ISubcategories, IProducts } from '@/interfaces'
 
 const CatalogPage = () => {
     const { catalog, fetchCatalogStore, catalogIsLoading } = useStore()
@@ -31,39 +30,40 @@ const CatalogPage = () => {
             )
         })
 
-    console.log('catalog +++', catalog)
-    console.log('category ===', category)
-    console.log('subcategory ~~~', subcategory)
-
     return (
         <SidebarLayout>
             <h1>Catalog Page</h1>
-            <div className="flex flex-row justify-around items-center py-5">
-                {catalog.map((item) => (
-                    <div key={item.categoryId}>
-                        <NavLink
-                            to={`/catalog/${item.categoryName.toLocaleLowerCase()}`}
-                            className="inline-flex p-2 rounded-2xl bg-blue-950 text-white"
-                        >
-                            <p>{item.categoryName}</p>
-                            <p>{item.categoryId}</p>
-                        </NavLink>
-                    </div>
-                ))}
-            </div>
+            {/*<div className="flex flex-row justify-around items-center py-5">*/}
+            {/*    {catalog.map((item) => (*/}
+            {/*        <div key={item.categoryId}>*/}
+            {/*            <NavLink*/}
+            {/*                to={`/catalog/${item.categoryName.toLocaleLowerCase()}`}*/}
+            {/*                className="inline-flex p-2 rounded-2xl bg-blue-950 text-white"*/}
+            {/*            >*/}
+            {/*                <p>{item.categoryName}</p>*/}
+            {/*                <p>{item.categoryId}</p>*/}
+            {/*            </NavLink>*/}
+            {/*        </div>*/}
+            {/*    ))}*/}
+            {/*</div>*/}
 
             <div className="flex">
                 {category?.subcategories?.map((cat) => (
                     <React.Fragment key={cat.categoryId}>
                         {cat?.products?.map((product) => (
                             <div className="w-1/3" key={product.productId}>
-                                {product.productName}
+                                <NavLink
+                                    to={`/catalog/${category?.categoryName.toLocaleLowerCase()}/${cat?.categoryName.toLocaleLowerCase()}/${product.productId}`}
+                                >
+                                    <p>{product.productName}</p>
+                                    <p>{product.productId}</p>
+                                </NavLink>
                             </div>
                         ))}
                     </React.Fragment>
                 ))}
+                <Outlet />
             </div>
-            <Outlet />
         </SidebarLayout>
     )
 }
