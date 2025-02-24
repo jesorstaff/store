@@ -1,18 +1,13 @@
-import React, { Fragment } from 'react'
-import SidebarLayout from '@/layouts/sidebarLayout'
+import React, { useEffect } from 'react'
 import useStore from '@/store/store'
-import { useEffect } from 'react'
-import { NavLink, Outlet } from 'react-router'
 import { useParams } from 'react-router'
-import { ICatalog, ISubcategories, IProducts } from '@/interfaces'
+import { ICatalog, ISubcategories } from '@/interfaces'
+import SidebarLayout from '@/layouts/sidebarLayout'
+import Card from './card'
 
 const CatalogPage = () => {
-    const { catalog, fetchCatalogStore, catalogIsLoading } = useStore()
-    const { categoryName, subcategoryName, productId } = useParams()
-
-    console.log('categoryName', categoryName)
-    console.log('subcategoryName', subcategoryName)
-    console.log('productId', productId)
+    const { catalog, fetchCatalogStore } = useStore()
+    const { categoryName, subcategoryName } = useParams()
 
     useEffect(() => {
         fetchCatalogStore()
@@ -30,41 +25,89 @@ const CatalogPage = () => {
             )
         })
 
-    return (
-        <SidebarLayout>
-            <h1>Catalog Page</h1>
-            {/*<div className="flex flex-row justify-around items-center py-5">*/}
-            {/*    {catalog.map((item) => (*/}
-            {/*        <div key={item.categoryId}>*/}
-            {/*            <NavLink*/}
-            {/*                to={`/catalog/${item.categoryName.toLocaleLowerCase()}`}*/}
-            {/*                className="inline-flex p-2 rounded-2xl bg-blue-950 text-white"*/}
-            {/*            >*/}
-            {/*                <p>{item.categoryName}</p>*/}
-            {/*                <p>{item.categoryId}</p>*/}
-            {/*            </NavLink>*/}
-            {/*        </div>*/}
-            {/*    ))}*/}
-            {/*</div>*/}
+    if (subcategory && category) {
+        return (
+            <SidebarLayout>
+                <Heading text={subcategory?.categoryName || ''} />
+                <div className="grid grid-cols-3 gap-4 mt-10">
+                    {subcategory.products?.map((product) => (
+                        <Card
+                            key={product.productId}
+                            product={product}
+                            category={category}
+                            subcategory={subcategory}
+                        />
+                    ))}
+                </div>
+            </SidebarLayout>
+        )
+    } else {
+        return (
+            <SidebarLayout>
+                <Heading text={category?.categoryName || ''} />
+                <div className="grid grid-cols-3 gap-4 mt-10">
+                    {category?.subcategories?.map((cat) => (
+                        <React.Fragment key={cat.categoryId}>
+                            {cat?.products?.map((product) => (
+                                <Card
+                                    key={product.productId}
+                                    product={product}
+                                    category={category}
+                                    subcategory={cat}
+                                />
+                            ))}
+                        </React.Fragment>
+                    ))}
+                </div>
+            </SidebarLayout>
+        )
+    }
+}
 
-            <div className="flex">
-                {category?.subcategories?.map((cat) => (
-                    <React.Fragment key={cat.categoryId}>
-                        {cat?.products?.map((product) => (
-                            <div className="w-1/3" key={product.productId}>
-                                <NavLink
-                                    to={`/catalog/${category?.categoryName.toLocaleLowerCase()}/${cat?.categoryName.toLocaleLowerCase()}/${product.productId}`}
-                                >
-                                    <p>{product.productName}</p>
-                                    <p>{product.productId}</p>
-                                </NavLink>
-                            </div>
-                        ))}
-                    </React.Fragment>
-                ))}
-                <Outlet />
-            </div>
-        </SidebarLayout>
+const Heading = (props: { text: string }) => {
+    const { text } = props
+    return (
+        <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold">{text}</h1>
+            <SortBy />
+        </div>
+    )
+}
+
+const SortBy = () => {
+    return (
+        <div className="flex items-center gap-2 cursor-pointer">
+            <div>Sort By</div>
+            {true ? (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <polyline points="18 15 12 9 6 15" />
+                </svg>
+            ) : (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <polyline points="6 9 12 15 18 9" />
+                </svg>
+            )}
+        </div>
     )
 }
 

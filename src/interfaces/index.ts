@@ -1,6 +1,8 @@
 export interface IProducts {
     productId: number
     productName: string
+    productSlug: string
+    productImage?: string
     images?: string[]
     vendor?: number
     price?: number
@@ -8,7 +10,7 @@ export interface IProducts {
         small: string
         medium: string
         large: string
-    }[]
+    }
     color?: {
         hex: string
         name: string

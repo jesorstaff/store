@@ -12,17 +12,9 @@
     --color-light: #6b7a99;
 }
 
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
-
-*:focus {
-    outline: none;
-}
-
 body {
     background-color: var(--bg-color-main);
     color: var(--color-light);
     font-size: 16px;
+    overflow-y: scroll;
 }

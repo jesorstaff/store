@@ -15,7 +15,7 @@ const Brands = () => {
         ),
     ].sort()
 
-    console.log('sortedBrands', sortedBrands)
+    // console.log('sortedBrands', sortedBrands)
 
     const open = true
     const index = true

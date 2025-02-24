@@ -5,16 +5,17 @@ import CatalogFilters from '@/components/catalogFilters'
 
 interface LayoutProps {
     children: ReactNode
+    rightSidebar?: boolean
 }
 
-const SidebarLayout: FC<LayoutProps> = ({ children }) => {
+const SidebarLayout: FC<LayoutProps> = ({ children, rightSidebar = true }) => {
     return (
         <>
             <Header />
             <div className="flex">
                 <Sidebar />
                 <div className="w-full p-10">{children}</div>
-                <CatalogFilters />
+                {rightSidebar && <CatalogFilters />}
             </div>
         </>
     )

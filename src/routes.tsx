@@ -15,7 +15,7 @@ const AppRouter = () => {
                     element={<CatalogPage />}
                 />
                 <Route
-                    path="catalog/:categoryName/:subcategoryName/:productId"
+                    path="catalog/:categoryName/:subcategoryName/:productSlug"
                     element={<Detail />}
                 />
                 <Route path="*" element={<p>Page Not Found</p>} />
