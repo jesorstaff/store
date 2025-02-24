@@ -4,17 +4,20 @@ import { ICatalog } from '@/interfaces'
 
 interface ICatalogState {
     catalog: ICatalog[]
+    catalogIsLoading: boolean
     fetchCatalogStore: () => Promise<void>
 }
 
 const useStore = create<ICatalogState>((set) => ({
-    catalog: [], // Начальное состояние
+    catalog: [],
+    catalogIsLoading: false,
     fetchCatalogStore: async () => {
         try {
+            set({ catalogIsLoading: true })
             const data = await fetchCatalog()
-            set({ catalog: data })
+            set({ catalog: data, catalogIsLoading: false })
         } catch (error) {
-            console.error('Ошибка при загрузке каталога:', error) // Обработка ошибок
+            console.error('Ошибка при загрузке каталога:', error)
         }
     },
 }))

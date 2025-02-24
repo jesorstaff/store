@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ISubcategories } from '@/interfaces'
 import sportImg from '/sport-article.jpg'
 import useStore from '@/store/store'
+import { NavLink } from 'react-router'
 
 const Sidebar = () => {
     const [open, setOpen] = useState<number>(0)
@@ -71,12 +72,17 @@ const Sidebar = () => {
                                                 className="flex justify-between items-center"
                                                 key={subcategory.categoryId}
                                             >
-                                                <a
-                                                    href="/test"
+                                                <NavLink
+                                                    to={
+                                                        '/catalog/' +
+                                                        category.categoryName.toLocaleLowerCase() +
+                                                        '/' +
+                                                        subcategory.categoryName.toLocaleLowerCase()
+                                                    }
                                                     className="text-font-light font-bold"
                                                 >
                                                     {subcategory.categoryName}
-                                                </a>
+                                                </NavLink>
                                                 {subcategory.products && (
                                                     // <span className="bg-gray-100 rounded-full py-3 px-3 h-8 text-center text-font-bold font-bold">
                                                     <span className="bg-gray-100 rounded-full py-1 px-4 text-center font-bold">

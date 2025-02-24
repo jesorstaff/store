@@ -12,10 +12,12 @@ const catalog: ICatalog[] = [
                     {
                         productId: 100,
                         productName: 'Class Logo Sweatshirt',
+                        brand: 'Nike',
                     },
                     {
                         productId: 101,
                         productName: 'Orange Sport Dress',
+                        brand: 'Adidas',
                     },
                 ],
             },
@@ -26,6 +28,7 @@ const catalog: ICatalog[] = [
                     {
                         productId: 102,
                         productName: 'Class Logo Sweatshirt',
+                        brand: 'Nike',
                     },
                 ],
             },
@@ -42,6 +45,7 @@ const catalog: ICatalog[] = [
                     {
                         productId: 200,
                         productName: 'Class Logo Sweatshirt',
+                        brand: 'Lacoste',
                     },
                 ],
             },
@@ -58,6 +62,7 @@ const catalog: ICatalog[] = [
                     {
                         productId: 300,
                         productName: 'White belt',
+                        brand: 'Puma',
                     },
                 ],
             },
@@ -73,7 +78,8 @@ const catalog: ICatalog[] = [
                 products: [
                     {
                         productId: 400,
-                        productName: 'helmet',
+                        productName: 'Steels 550',
+                        brand: 'Steels',
                     },
                 ],
             },

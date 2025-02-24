@@ -1,4 +1,4 @@
-interface IProducts {
+export interface IProducts {
     productId: number
     productName: string
     images?: string[]
