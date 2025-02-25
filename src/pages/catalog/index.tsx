@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useStore from '@/store/store'
 import { useParams } from 'react-router'
-import { ICatalog, ISubcategories } from '@/interfaces'
+import { ICatalog, ISubcategories, IProducts } from '@/interfaces'
 import SidebarLayout from '@/layouts/sidebarLayout'
 import Card from './card'
 
 const CatalogPage = () => {
     const { catalog, fetchCatalogStore } = useStore()
     const { categoryName, subcategoryName } = useParams()
+    // const [sortBy, setSortBy] = useState<'asc' | 'desc'>('asc')
+
+    // const handleSortBy = (sort: 'asc' | 'desc') => {
+    //     setSortBy(sort)
+    // }
 
     useEffect(() => {
         fetchCatalogStore()
@@ -41,7 +46,7 @@ const CatalogPage = () => {
                 </div>
             </SidebarLayout>
         )
-    } else {
+    } else if (category) {
         return (
             <SidebarLayout>
                 <Heading text={category?.categoryName || ''} />
@@ -58,6 +63,27 @@ const CatalogPage = () => {
                             ))}
                         </React.Fragment>
                     ))}
+                </div>
+            </SidebarLayout>
+        )
+    } else {
+        return (
+            <SidebarLayout>
+                <Heading text={'Catalog'} />
+                <div className="grid grid-cols-3 gap-4 mt-10">
+                    {catalog.flatMap(
+                        (item) =>
+                            item.subcategories?.flatMap((sub) =>
+                                sub.products?.map((product) => (
+                                    <Card
+                                        key={product.productId}
+                                        product={product}
+                                        category={item}
+                                        subcategory={sub}
+                                    />
+                                ))
+                            ) || []
+                    )}
                 </div>
             </SidebarLayout>
         )
