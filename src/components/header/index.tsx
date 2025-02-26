@@ -10,7 +10,7 @@ const Header = () => {
             <Menu />
             <div className="flex items-center gap-5">
                 <div>Account</div>
-                <div>Bag</div>
+                <NavLink to="/cart">Cart</NavLink>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ const CatalogFilters = () => {
     return (
         <aside className="w-full max-w-xs border-l-1 border-gray-300 p-10">
             <div>Filters</div>
-            <div className="flex justify-between items-center py-3 border-b-1 border-gray-300 text-font-bold font-bold cursor-pointer">
+            <div className="flex justify-between items-center py-10 border-b-1 border-gray-300 text-font-bold font-bold cursor-pointer">
                 Brand
                 <span className="text-gray-400">
                     {open === index ? (

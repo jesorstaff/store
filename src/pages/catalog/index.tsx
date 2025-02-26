@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import useStore from '@/store/store'
 import { useParams } from 'react-router'
-import { ICatalog, ISubcategories, IProducts } from '@/interfaces'
+import { ICatalog, ISubcategories } from '@/interfaces'
 import SidebarLayout from '@/layouts/sidebarLayout'
 import Card from './card'
 

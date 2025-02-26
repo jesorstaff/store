@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import App from './App'
 import CatalogPage from '@/pages/catalog'
-import Detail from '@/pages/catalog/detail'
-
+import Detail from '@/pages/catalog/detail/detail.tsx'
+import Cart from '@/pages/cart'
 const AppRouter = () => {
     return (
         <BrowserRouter>
@@ -18,6 +18,7 @@ const AppRouter = () => {
                     path="catalog/:categoryName/:subcategoryName/:productSlug"
                     element={<Detail />}
                 />
+                <Route path="cart" element={<Cart />} />
                 <Route path="*" element={<p>Page Not Found</p>} />
             </Routes>
         </BrowserRouter>

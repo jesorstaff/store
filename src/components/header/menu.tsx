@@ -26,12 +26,24 @@ type TypeMenuList = {
 
 const menuList: TypeMenuList[] = [
     {
-        name: 'Home',
-        link: '/',
-    },
-    {
         name: 'Catalog',
         link: '/catalog',
+    },
+    {
+        name: 'Women',
+        link: '/catalog/women',
+    },
+    {
+        name: 'Men',
+        link: '/catalog/men',
+    },
+    {
+        name: 'Accessories',
+        link: '/catalog/accessories',
+    },
+    {
+        name: 'Sports',
+        link: '/catalog/sports',
     },
 ]
 

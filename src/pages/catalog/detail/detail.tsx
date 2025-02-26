@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import useStore from '@/store/store'
 import { IProducts } from '@/interfaces'
 import SidebarLayout from '@/layouts/sidebarLayout'
+import Breadcrumbs from '@/components/breadcrumbs'
 
 const Detail = () => {
     const [product, setProduct] = useState<IProducts | null>(null)
@@ -40,9 +41,16 @@ const Detail = () => {
 
     console.log('product', product)
 
+    const handleAddToCart = () => {
+        const cart = JSON.parse(localStorage.getItem('cart') || '[]')
+        console.log('cart', typeof cart)
+        cart.push(product)
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
+
     return (
         <SidebarLayout rightSidebar={false}>
-            <div>Home - Women - Clothing - Test</div>
+            <Breadcrumbs />
             <main className="mt-10 flex">
                 <div className="w-full">
                     <img
@@ -53,9 +61,11 @@ const Detail = () => {
                 </div>
                 <div className="w-1/2">
                     <div className="flex items-center">
-                        <div className="mr-3 bg-white rounded-md p-2">
-                            {product?.new ? 'NEW' : null}
-                        </div>
+                        {product?.new && (
+                            <div className="mr-3 bg-white rounded-md p-2">
+                                NEW
+                            </div>
+                        )}
                         <div>
                             {product?.vendor
                                 ? `Article: ${product?.vendor}`
@@ -82,6 +92,27 @@ const Detail = () => {
                                 )
                             })}
                         </div>
+                    </div>
+                    <div>
+                        <select name="size" id="size">
+                            {Object.keys(product?.sizes || {}).map(
+                                (size, index) => {
+                                    return (
+                                        <option key={index} value={size}>
+                                            {size}
+                                        </option>
+                                    )
+                                }
+                            )}
+                        </select>
+                    </div>
+                    <div>
+                        <button
+                            onClick={handleAddToCart}
+                            className="bg-black text-white px-4 py-2 rounded-md"
+                        >
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
             </main>

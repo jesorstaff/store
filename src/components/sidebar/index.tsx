@@ -24,7 +24,7 @@ const Sidebar = () => {
                     {catalog.map((category, index) => (
                         <div key={category.categoryId}>
                             <div
-                                className="flex justify-between items-center py-3 border-b-1 border-gray-300 text-font-bold font-bold cursor-pointer"
+                                className="flex justify-between items-center py-10 border-b-1 border-gray-300 text-font-bold font-bold cursor-pointer"
                                 onClick={() => openSubCategories(index)}
                             >
                                 {category.categoryName}

@@ -1,7 +1,7 @@
 import SidebarLayout from '@/layouts/sidebarLayout'
 
 const App = () => {
-    return <SidebarLayout>APPP XDDDD</SidebarLayout>
+    return <SidebarLayout>APP.TSX</SidebarLayout>
 }
 
 export default App
